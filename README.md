@@ -1,2 +1,53 @@
-# crecombio
-A simple Cre, Flp and other site-specific recombination simulator
+<p align="center">
+<img alt="Crecombio logo" title="GeneAlloy" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/Crecombio/main/images/crecombio.png" width="150">
+</p>
+
+
+# Crecombio
+
+A simple **Cre**, Flp and other site-specific re**combi**nation simulat**o**r.
+
+
+## Background
+
+Site-specific recombinations can be categorised in many ways:
+- recombination enzyme used
+- recombination sequence used
+- number of DNA molecules present in the reaction and number of recombination sites in each molecule
+- purpose: inversion, excision, insertion (which includes an excision step) and translocation
+
+For simulating homologous recombination and other assemblies, use [DNA Cauldron](https://github.com/Edinburgh-Genome-Foundry/dnacauldron) and EGF CUBA [Simulate Golden Gate Assemblies](https://cuba.genomefoundry.org/simulate_gg_assemblies) / [Simulate multi-method assemblies](https://cuba.genomefoundry.org/simulate_multi_method_assemblies).
+
+Crecombio is currently intended for simple 1- or 2-molecule recombination simulations. For more complicated procedures, such as the *serine integrase recombinational assembly* (SIRA), described in *Merrick et al.,* (Serine Integrases: Advancing Synthetic Biology. [ACS Synth. Biol. 2018, 7, 299−310](http://pubs.acs.org/action/showCitFormats?doi=10.1021/acssynbio.7b00308)), use it in an iterative manner. Alternatively DNA Cauldron's classes can be used with custom-defined enzymes to simulate the cleavage and recombination.
+
+
+**Work in progress:**
+- Simulating Cre-Lox, *att* and other recombinations
+- Searching nonspecific (ambiguous) sites
+- Handling circular sequences
+- Summary of simulation in a PDF report
+
+
+## Usage
+
+```python
+from Bio.SeqRecord import SeqRecord
+from Bio.Seq import Seq
+import recombio
+excision_seq = SeqRecord(Seq("GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCtctagaaaGtATAGGAACTTCAAAAAAAAAAAAAAAAAAAAAAGAAGTTCCTATTCtctagaaaGtATAGGAACTTCCCCCCCCCCCCCCCCCCCCCCCCCCCC".upper()))
+results = recombine([excision_seq])
+print(results[0][0].seq)
+# GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+inversion_seq = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq("GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCtctagaaaGtATAGGAACTTCAAAAAAAAAAAAAGGGGGGGGGGGGGAAGTTCCTATaCtttctagaGAATAGGAACTTCCCCCCCCCCCCCCCCCCCCCCCCCCCC".upper()))
+results = recombine([inversion_seq])
+print(results[0][0].seq)
+# GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCTTTTTTTTTTTTTGAAGTTCCTATACTTTCTAGAGAATAGGAACTTCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+```
+
+
+## License = MIT
+
+Crecombio is [free software](https://www.gnu.org/philosophy/free-sw.en.html), which means the users have the freedom to run, copy, distribute, study, change and improve the software.
+
+Crecombio was written at the [Edinburgh Genome Foundry](https://edinburgh-genome-foundry.github.io/) by [Peter Vegh](https://github.com/veghp) and is released under the MIT license.
