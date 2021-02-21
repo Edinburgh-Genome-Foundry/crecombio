@@ -69,9 +69,11 @@ def recombine_one_sequence(sequences, recombinase="Flp"):
 
 
 def recombine_two_sequences(sequences, recombinase="Flp"):
+    seq0 = sequences[0]
+    seq1 = sequences[1]
     site = SITES[recombinase]["seq"]
-    seq0_matches, seq0_rc_matches = count_number_of_sites(sequences[0], site)
-    seq1_matches, seq1_rc_matches = count_number_of_sites(sequences[1], site)
+    seq0_matches, seq0_rc_matches = count_number_of_sites(seq0, site)
+    seq1_matches, seq1_rc_matches = count_number_of_sites(seq1, site)
     if len(seq0_rc_matches) != 0 or len(seq1_rc_matches) != 0:
         print(
             "Simulating recombination of reverse complement sites are not implemented "
@@ -80,8 +82,14 @@ def recombine_two_sequences(sequences, recombinase="Flp"):
 
     recombined_sequences = []
     if len(seq0_matches) == 1 and len(seq1_matches) == 1:
-        # translocate
-        pass
+        # Translocate
+        seq0_left_part = seq0[: seq0_matches[0]]
+        seq0_right_part = seq0[seq0_matches[0] :]  # includes the site
+        seq1_left_part = seq1[: seq1_matches[0]]
+        seq1_right_part = seq1[seq1_matches[0] :]  # includes the site
+        seq2 = seq0_left_part + seq1_right_part
+        seq3 = seq1_left_part + seq0_right_part
+        recombined_sequences += [seq2, seq3]
     elif len(seq0_matches) == 1 and len(seq1_matches) == 2:
         # Insert from seq1 to seq0
         pass
