@@ -11,7 +11,7 @@ def test_recombine():
             "AAAAAAAAAGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
         )
     )
-    results = crecombio.recombine([excision_seq])
+    results = crecombio.recombine_one_sequence([excision_seq])
 
     assert (
         str(results[0][0].seq)
@@ -25,7 +25,7 @@ def test_recombine():
             "GGGGGGGGGGGGGAAGTTCCTATACTTTCTAGAGAATAGGAACTTCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
         )
     )
-    results = crecombio.recombine([inversion_seq])
+    results = crecombio.recombine_one_sequence([inversion_seq])
     assert (
         str(results[0][0].seq)
         == "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCT"
