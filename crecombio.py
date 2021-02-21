@@ -91,14 +91,41 @@ def recombine_two_sequences(sequences, recombinase="Flp"):
         seq2 = seq0_left_part + seq1_right_part
         seq3 = seq1_left_part + seq0_right_part
         recombined_sequences += [seq2, seq3]
+
     elif len(seq0_matches) == 1 and len(seq1_matches) == 2:
         # Insert from seq1 to seq0
-        pass
+        donor = seq1
+        acceptor = seq0
+        donor_matches = seq1_matches
+        acceptor_matches = seq0_matches
+        new_donor = donor[: donor_matches[0]] + donor[donor_matches[1] :]
+        excised_seq = donor[donor_matches[0] : donor_matches[1]]
+        new_acceptor = (
+            acceptor[: acceptor_matches[0]]
+            + excised_seq
+            + acceptor[acceptor_matches[0] :]
+        )
+        recombined_sequences += [new_acceptor, new_donor]
+
     elif len(seq0_matches) == 2 and len(seq1_matches) == 1:
         # Insert from seq0 to seq1
-        pass
+        donor = seq0
+        acceptor = seq1
+        donor_matches = seq0_matches
+        acceptor_matches = seq1_matches
+        # Same code as above:
+        new_donor = donor[: donor_matches[0]] + donor[donor_matches[1] :]
+        excised_seq = donor[donor_matches[0] : donor_matches[1]]
+        new_acceptor = (
+            acceptor[: acceptor_matches[0]]
+            + excised_seq
+            + acceptor[acceptor_matches[0] :]
+        )
+        recombined_sequences += [new_acceptor, new_donor]
+
     elif len(seq0_matches) == 2 and len(seq1_matches) == 2:
         raise Exception("Both sequences have 2 recombination sites")
+
     else:
         raise Exception(
             "The number of recombination sites must be 1 or 2 in each sequence"
