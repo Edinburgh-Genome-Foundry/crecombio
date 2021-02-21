@@ -36,17 +36,7 @@ def recombine_one_sequence(sequences, recombinase="Flp"):
     recombined_sequences = []
     for sequence in sequences:
         site = SITES[recombinase]["seq"]
-        matches = [
-            m.start()
-            for m in re.finditer(re.escape(str(site)), str(sequence.seq).upper())
-        ]
-
-        rc_matches = [
-            m.start()
-            for m in re.finditer(
-                re.escape(str(site.reverse_complement())), str(sequence.seq).upper()
-            )
-        ]
+        matches, rc_matches = count_number_of_sites(sequence, site)
 
         if (len(matches) + len(rc_matches)) != 2:
             raise Exception("The sequence must contain 2 recombinase sites")
@@ -79,5 +69,20 @@ def recombine_one_sequence(sequences, recombinase="Flp"):
     return recombined_sequences
 
 
-def recombine_two_sequences(sequences, recombinase="Flp"):
+def recombine_two_sequences(sequences, recombinase):
     pass
+
+
+def count_number_of_sites(sequence, site):
+    matches = [
+        m.start() for m in re.finditer(re.escape(str(site)), str(sequence.seq).upper())
+    ]
+
+    rc_matches = [
+        m.start()
+        for m in re.finditer(
+            re.escape(str(site.reverse_complement())), str(sequence.seq).upper()
+        )
+    ]
+
+    return matches, rc_matches
