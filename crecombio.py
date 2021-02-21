@@ -7,7 +7,15 @@ SITES = {
         "seq": Seq("GAAGTTCCTATTCtctagaaaGtATAGGAACTTC".upper()),
         "5p": Seq("GAAGTTCCTATTC"),
         "3p": Seq("tctagaaaGtATAGGAACTTC".upper()),
-    }
+    },
+    "Cre": {"seq": Seq("ATAACTTCGTATAATGTATGCTATACGAAGTTAT")},
+    "Cre_lox_511": {"seq": Seq("ATAACTTCGTATAATGTATACTATACGAAGTTAT")},
+    "Cre_lox_5171": {"seq": Seq("ATAACTTCGTATAATGTGTACTATACGAAGTTAT")},
+    "Cre_lox_2272": {"seq": Seq("ATAACTTCGTATAAAGTATCCTATACGAAGTTAT")},
+    "Cre_M2": {"seq": Seq("ATAACTTCGTATAAGAAACCATATACGAAGTTAT")},
+    "Cre_M3": {"seq": Seq("ATAACTTCGTATATAATACCATATACGAAGTTAT")},
+    "Cre_M7": {"seq": Seq("ATAACTTCGTATAAGATAGAATATACGAAGTTAT")},
+    "Cre_M11": {"seq": Seq("ATAACTTCGTATACGATACCATATACGAAGTTAT")},
 }
 
 
