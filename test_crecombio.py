@@ -30,7 +30,7 @@ def test_recombine_one_sequence():
     results = crecombio.recombine_one_sequence([excision_seq])
 
     assert (
-        str(results[0][0].seq)
+        str(results[0].seq)
         == "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCCC"
         "CCCCCCCCCCCCC"
     )
@@ -43,7 +43,7 @@ def test_recombine_one_sequence():
     )
     results = crecombio.recombine_one_sequence([inversion_seq])
     assert (
-        str(results[0][0].seq)
+        str(results[0].seq)
         == "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCT"
         "TTTTTTTTTTTTGAAGTTCCTATACTTTCTAGAGAATAGGAACTTCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
     )

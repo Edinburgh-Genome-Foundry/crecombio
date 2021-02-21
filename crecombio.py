@@ -43,11 +43,11 @@ def recombine_one_sequence(sequences, recombinase="Flp"):
         # Excision
         if len(matches) == 2:
             new_sequence = sequence[: matches[0]] + sequence[matches[1] :]
-            recombined_sequences += [[new_sequence]]
+            recombined_sequences += [new_sequence]
         # Excision on reverse strand
         if len(rc_matches) == 2:
             new_sequence = sequence[: matches[0]] + sequence[matches[1] :]
-            recombined_sequences += [[new_sequence]]
+            recombined_sequences += [new_sequence]
         # Inversion
         if len(matches) == 1 and len(rc_matches) == 1:
             if matches[0] > rc_matches[0]:
@@ -63,7 +63,7 @@ def recombine_one_sequence(sequences, recombinase="Flp"):
             left_part = sequence[: matches[0] + len(site)]
             right_part = sequence[rc_matches[0] :]
             new_sequence = left_part + inverted_sequence + right_part
-            recombined_sequences += [[new_sequence]]
+            recombined_sequences += [new_sequence]
 
     return recombined_sequences
 
