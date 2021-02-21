@@ -50,6 +50,7 @@ def test_recombine_one_sequence():
 
 
 def test_recombine_two_sequences():
+    # Test translocation:
     seq0 = SeqRecord(
         Seq("AAAAAAAAAAAAAAAAAAAAGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAA")
     )
@@ -64,6 +65,28 @@ def test_recombine_two_sequences():
     assert (
         str(recombined_seqs[1].seq)
         == "TTTTTTTTTTTTTTTTTTTTGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAA"
+    )
+
+    # Test insertion:
+    excision_seq = SeqRecord(
+        Seq(
+            "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAAA"
+            "AAAAAAAAAGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+        )
+    )
+    target_seq = SeqRecord(
+        Seq("GGGGGGGGGGGGGGGGGGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCTTTTTTTTTTTTTTTTT")
+    )
+    recombined_seqs = crecombio.recombine_two_sequences([excision_seq, target_seq])
+    assert (
+        str(recombined_seqs[0].seq)
+        == "GGGGGGGGGGGGGGGGGGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAAAAAAAAAAAAGA"
+        "AGTTCCTATTCTCTAGAAAGTATAGGAACTTCTTTTTTTTTTTTTTTTT"
+    )
+    assert (
+        str(recombined_seqs[1].seq)
+        == "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCCC"
+        "CCCCCCCCCCCCC"
     )
 
 
