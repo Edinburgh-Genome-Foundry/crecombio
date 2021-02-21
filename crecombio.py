@@ -33,7 +33,6 @@ def recombine(sequences, recombinase="Flp"):
             m.start()
             for m in re.finditer(re.escape(str(site)), str(sequence.seq).upper())
         ]
-        print(matches)
 
         rc_matches = [
             m.start()
