@@ -79,5 +79,5 @@ def recombine_one_sequence(sequences, recombinase="Flp"):
     return recombined_sequences
 
 
-def recombine_two_sequences():
+def recombine_two_sequences(sequences, recombinase="Flp"):
     pass
