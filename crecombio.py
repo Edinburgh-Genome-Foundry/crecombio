@@ -37,7 +37,6 @@ def recombine_one_sequence(sequences, recombinase="Flp"):
     for sequence in sequences:
         site = SITES[recombinase]["seq"]
         matches, rc_matches = count_number_of_sites(sequence, site)
-
         if (len(matches) + len(rc_matches)) != 2:
             raise Exception("The sequence must contain 2 recombinase sites")
 
@@ -69,8 +68,34 @@ def recombine_one_sequence(sequences, recombinase="Flp"):
     return recombined_sequences
 
 
-def recombine_two_sequences(sequences, recombinase):
-    pass
+def recombine_two_sequences(sequences, recombinase="Flp"):
+    site = SITES[recombinase]["seq"]
+    seq0_matches, seq0_rc_matches = count_number_of_sites(sequences[0], site)
+    seq1_matches, seq1_rc_matches = count_number_of_sites(sequences[1], site)
+    if len(seq0_rc_matches) != 0 or len(seq1_rc_matches) != 0:
+        print(
+            "Simulating recombination of reverse complement sites are not implemented "
+            "yet and these sites are ignored"
+        )
+
+    recombined_sequences = []
+    if len(seq0_matches) == 1 and len(seq1_matches) == 1:
+        # translocate
+        pass
+    elif len(seq0_matches) == 1 and len(seq1_matches) == 2:
+        # Insert from seq1 to seq0
+        pass
+    elif len(seq0_matches) == 2 and len(seq1_matches) == 1:
+        # Insert from seq0 to seq1
+        pass
+    elif len(seq0_matches) == 2 and len(seq1_matches) == 2:
+        raise Exception("Both sequences have 2 recombination sites")
+    else:
+        raise Exception(
+            "The number of recombination sites must be 1 or 2 in each sequence"
+        )
+
+    return recombined_sequences
 
 
 def count_number_of_sites(sequence, site):
