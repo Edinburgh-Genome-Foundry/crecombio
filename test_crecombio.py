@@ -49,6 +49,24 @@ def test_recombine_one_sequence():
     )
 
 
+def test_recombine_two_sequences():
+    seq0 = SeqRecord(
+        Seq("AAAAAAAAAAAAAAAAAAAAGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAA")
+    )
+    seq1 = SeqRecord(
+        Seq("TTTTTTTTTTTTTTTTTTTTGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCTTTTTTTTTTTT")
+    )
+    recombined_seqs = crecombio.recombine_two_sequences([seq0, seq1])
+    assert (
+        str(recombined_seqs[0].seq)
+        == "AAAAAAAAAAAAAAAAAAAAGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCTTTTTTTTTTTT"
+    )
+    assert (
+        str(recombined_seqs[1].seq)
+        == "TTTTTTTTTTTTTTTTTTTTGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAA"
+    )
+
+
 def test_recombine():
     excision_seq = SeqRecord(
         Seq(
