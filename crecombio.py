@@ -23,9 +23,16 @@ def recombine(sequences, recombinase="Flp"):
     **recombinases**
     > Recombinase (`str`). Default Flp.
     """
-    if len(sequences) != 1:
-        raise Exception("Multisequence recombination not supported yet")
+    if len(sequences) == 1:
+        return recombine_one_sequence(sequences, recombinase)
+    if len(sequences) == 2:
+        return recombine_two_sequences(sequences, recombinase)
+    else:
+        raise Exception("Only 1- or 2-sequence recombination is supported")
 
+
+def recombine_one_sequence(sequences, recombinase="Flp"):
+    """Simulate recombination of one sequence."""
     recombined_sequences = []
     for sequence in sequences:
         site = SITES[recombinase]["seq"]
@@ -56,7 +63,8 @@ def recombine(sequences, recombinase="Flp"):
         if len(matches) == 1 and len(rc_matches) == 1:
             if matches[0] > rc_matches[0]:
                 raise Exception(
-                    "Orientation incorrect: reverse complement of site is before the site."
+                    "Orientation incorrect: reverse complement of recombination site is"
+                    " before the site."
                 )
                 # extend to circular sequences later
             inside_sequence = sequence[
@@ -69,3 +77,7 @@ def recombine(sequences, recombinase="Flp"):
             recombined_sequences += [[new_sequence]]
 
     return recombined_sequences
+
+
+def recombine_two_sequences():
+    pass
