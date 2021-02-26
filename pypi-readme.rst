@@ -1,7 +1,7 @@
 Project description
 ===================
 
-Crecombio is a simple **Cre**, Flp and other site-specific DNA re**combi**nation simulat**o**r.
+Crecombio is a simple Cre, Flp and other site-specific DNA recombination simulator.
 
 
 **Install:**

@@ -11,9 +11,10 @@ A simple **Cre**, Flp and other site-specific re**combi**nation simulat**o**r.
 ## Background
 
 Site-specific *recombinase proteins* rearrange one or two DNA molecules, through recombination 
-of certain sequences. In *Flp-FRT recombination*, a tyrosine family member recombinase protein, *flippase*, recognizes *FRT* (flippase recognition target) sites and performs inversion, excision, insertion or translocation of DNA in a reversible manner, depending on the configuration of the FRT sites. Another, directional, system utilizes *serine integrases* to catalyze rearrangements at DNA sequences called attachment *(att)* sites.
+at certain recognized sequences. In *Flp-FRT recombination*, a tyrosine family member recombinase protein, *flippase*, recognizes *FRT* (flippase recognition target) sites and performs inversion, excision, insertion or translocation of DNA in a reversible manner, depending on the configuration of the FRT sites. Another, directional, system utilizes *serine integrases* to catalyze rearrangements at DNA sequences called attachment *(att)* sites.
 
 Site-specific recombinations can be categorised in many ways:
+
 - directionality: reversible or not
 - recombination enzyme used
 - recombination sequence used
@@ -31,9 +32,17 @@ Crecombio is currently intended for simple 1- or 2-molecule recombination simula
 - Handling circular sequences
 - Summary of simulation in a PDF report
 
-<p align="center">
+<p align="left">
 <img alt="Flp/FRT recombination" title="Flp/FRT recombination" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/Crecombio/main/images/crecombio_plot.jpg" width="1000">
 </p>
+
+
+## Install
+
+```
+pip install crecombio
+```
+
 
 ## Usage
 

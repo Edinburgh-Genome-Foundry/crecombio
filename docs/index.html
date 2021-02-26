@@ -417,11 +417,16 @@
 <h1 id="crecombio">Crecombio</h1>
 <p>A simple <strong>Cre</strong>, Flp and other site-specific re<strong>combi</strong>nation simulat<strong>o</strong>r.</p>
 <h2 id="background">Background</h2>
-<p>Site-specific recombinations can be categorised in many ways:
-- recombination enzyme used
-- recombination sequence used
-- number of DNA molecules present in the reaction and number of recombination sites in each molecule
-- purpose: inversion, excision, insertion (which includes an excision step) and translocation</p>
+<p>Site-specific <em>recombinase proteins</em> rearrange one or two DNA molecules, through recombination 
+at certain recognized sequences. In <em>Flp-FRT recombination</em>, a tyrosine family member recombinase protein, <em>flippase</em>, recognizes <em>FRT</em> (flippase recognition target) sites and performs inversion, excision, insertion or translocation of DNA in a reversible manner, depending on the configuration of the FRT sites. Another, directional, system utilizes <em>serine integrases</em> to catalyze rearrangements at DNA sequences called attachment <em>(att)</em> sites.</p>
+<p>Site-specific recombinations can be categorised in many ways:</p>
+<ul>
+<li>directionality: reversible or not</li>
+<li>recombination enzyme used</li>
+<li>recombination sequence used</li>
+<li>number of DNA molecules present in the reaction and number of recombination sites in each molecule</li>
+<li>purpose: inversion, excision, insertion and translocation</li>
+</ul>
 <p>For simulating homologous recombination and other assemblies, use <a href="https://github.com/Edinburgh-Genome-Foundry/dnacauldron">DNA Cauldron</a> and EGF CUBA <a href="https://cuba.genomefoundry.org/simulate_gg_assemblies">Simulate Golden Gate Assemblies</a> / <a href="https://cuba.genomefoundry.org/simulate_multi_method_assemblies">Simulate multi-method assemblies</a>.</p>
 <p>Crecombio is currently intended for simple 1- or 2-molecule recombination simulations. For more complicated procedures, such as the <em>serine integrase recombinational assembly</em> (SIRA), described in <em>Merrick et al.</em> (Serine Integrases: Advancing Synthetic Biology. <a href="https://pubs.acs.org/doi/10.1021/acssynbio.7b00308">ACS Synth. Biol. 2018, 7, 299−310</a>), use it in an iterative manner. Alternatively DNA Cauldron's classes can be used with custom-defined enzymes to simulate the cleavage and recombination.</p>
 <p><strong>Work in progress:</strong>
@@ -429,6 +434,10 @@
 - Searching nonspecific (ambiguous) sites
 - Handling circular sequences
 - Summary of simulation in a PDF report</p>
+<p align="left">
+<img alt="Flp/FRT recombination" title="Flp/FRT recombination" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/Crecombio/main/images/crecombio_plot.jpg" width="1000">
+</p>
+
 <h2 id="usage">Usage</h2>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">Bio.SeqRecord</span> <span class="kn">import</span> <span class="n">SeqRecord</span>
 <span class="kn">from</span> <span class="nn">Bio.Seq</span> <span class="kn">import</span> <span class="n">Seq</span>
