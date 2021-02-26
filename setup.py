@@ -14,4 +14,5 @@ setup(
     url="https://github.com/Edinburgh-Genome-Foundry/crecombio",
     keywords="biology",
     packages=find_packages(exclude="docs"),
+    install_requires=["biopython"],
 )
