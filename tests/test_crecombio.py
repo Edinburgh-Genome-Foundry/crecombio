@@ -21,6 +21,12 @@ def test_count_number_of_sites():
 
 
 def test_recombine_one_sequence():
+    # Not 2 FRT sites:
+    no_frt_seq = SeqRecord(Seq("ATCG"))
+    with pytest.raises(Exception):
+        crecombio.recombine_one_sequence([no_frt_seq])
+
+    # FRTs in same direction:
     excision_seq = SeqRecord(
         Seq(
             "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAAA"
@@ -35,6 +41,7 @@ def test_recombine_one_sequence():
         "CCCCCCCCCCCCC"
     )
 
+    # FRTs in opposite direction:
     inversion_seq = SeqRecord(
         Seq(
             "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAAA"
@@ -77,6 +84,7 @@ def test_recombine_two_sequences():
     target_seq = SeqRecord(
         Seq("GGGGGGGGGGGGGGGGGGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCTTTTTTTTTTTTTTTTT")
     )
+    # Excision seq first, target seq second:
     recombined_seqs = crecombio.recombine_two_sequences([excision_seq, target_seq])
     assert (
         str(recombined_seqs[0].seq)
@@ -88,6 +96,29 @@ def test_recombine_two_sequences():
         == "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCCC"
         "CCCCCCCCCCCCC"
     )
+
+    # Target seq first, excision seq second:
+    recombined_seqs = crecombio.recombine_two_sequences([target_seq, excision_seq])
+    assert (
+        str(recombined_seqs[0].seq)
+        == "GGGGGGGGGGGGGGGGGGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCAAAAAAAAAAAAAAAAAAAAAAGA"
+        "AGTTCCTATTCTCTAGAAAGTATAGGAACTTCTTTTTTTTTTTTTTTTT"
+    )
+    assert (
+        str(recombined_seqs[1].seq)
+        == "GACTGATGTGACGTGTGACAGCTGACGAAGTTCCTATTCTCTAGAAAGTATAGGAACTTCCCCCCCCCCCCCCC"
+        "CCCCCCCCCCCCC"
+    )
+
+    # 2x2 FRT sites:
+    with pytest.raises(Exception):
+        crecombio.recombine_two_sequences([excision_seq, excision_seq])
+
+    # Incorrect number of FRT sites:
+    with pytest.raises(Exception):
+        crecombio.recombine_two_sequences(
+            [SeqRecord(Seq("ATCG")), SeqRecord(Seq("ATCG"))]
+        )
 
 
 def test_recombine():
