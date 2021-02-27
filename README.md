@@ -5,6 +5,9 @@
 
 # Crecombio
 
+[![Build Status](https://travis-ci.org/Edinburgh-Genome-Foundry/crecombio.svg?branch=main)](https://travis-ci.org/Edinburgh-Genome-Foundry/crecombio)
+[![Coverage Status](https://coveralls.io/repos/github/Edinburgh-Genome-Foundry/crecombio/badge.svg?branch=main)](https://coveralls.io/github/Edinburgh-Genome-Foundry/crecombio?branch=main)
+
 A simple **Cre**, Flp and other site-specific re**combi**nation simulat**o**r.
 
 
