@@ -5,7 +5,6 @@
 # Crecombio
 
 [![Build Status](https://github.com/Edinburgh-Genome-Foundry/crecombio/actions/workflows/build.yml/badge.svg)](https://github.com/Edinburgh-Genome-Foundry/crecombio/actions/workflows/build.yml)
-[![Coverage Status](https://coveralls.io/repos/github/Edinburgh-Genome-Foundry/crecombio/badge.svg?branch=main)](https://coveralls.io/github/Edinburgh-Genome-Foundry/crecombio?branch=main)
 
 A simple **Cre**, Flp and other site-specific re**combi**nation simulat**o**r.
 
