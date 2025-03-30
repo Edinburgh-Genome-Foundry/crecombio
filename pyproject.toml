@@ -1,0 +1,22 @@
+[project]
+name = "crecombio"
+version = "0.1.1"
+license = "MIT"
+authors = [{ name = "Peter Vegh" }]
+description = "Site-specific DNA recombination simulator"
+readme = "pypi-readme.rst"
+keywords = ["biology"]
+dependencies = ["biopython"]
+
+[project.urls]
+Homepage = "https://github.com/Edinburgh-Genome-Foundry/crecombio/"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = ["docs"]

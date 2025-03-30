@@ -5,5 +5,3 @@ from .crecombio import (
     recombine_two_sequences,
     count_number_of_sites,
 )
-
-from .version import __version__
