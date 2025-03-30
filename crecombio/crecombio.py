@@ -22,14 +22,12 @@ SITES = {
 def recombine(sequences, recombinase="Flp"):
     """Simulate recombination and return sequences.
 
-
-    **Parameters**
-
-    **sequences**
-    > List of one or two Biopython SeqRecord objects (`list`).
-
-    **recombinases**
-    > Recombinase name (`str`). Default Flp.
+    Parameters
+    ----------
+    sequences : list
+        List of one or two Biopython SeqRecord objects.
+    recombinases : str, optional
+        Recombinase name. Default is 'Flp'.
     """
     if len(sequences) == 1:
         return recombine_one_sequence(sequences, recombinase)
@@ -145,14 +143,12 @@ def recombine_two_sequences(sequences, recombinase="Flp"):
 def count_number_of_sites(sequence, site):
     """Count the number of recombination sites in a sequence.
 
-
-    **Parameters**
-
-    **sequence**
-    > A Biopython SeqRecord object.
-
-    **site**
-    > The site sequence (`str`).
+    Parameters
+    ----------
+    sequence : SeqRecord
+        A Biopython SeqRecord object.
+    site : str
+        The site sequence.
     """
     matches = [
         m.start() for m in re.finditer(re.escape(str(site)), str(sequence.seq).upper())
